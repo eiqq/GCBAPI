@@ -49,10 +49,10 @@ public class Silent {
             }
         }
 
-        // Initialize the silents set if necessary.
+
         silents.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 
-        // Store the initial location.
+
         silents.get(target).add(this);
         silented.put(target, true);
         timerTask = new BukkitRunnable() {

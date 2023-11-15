@@ -54,7 +54,7 @@ public class Bound {
                 }
             }
         }
-        // Initialize the bounds set if necessary.
+
         bounds.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
         bounds.get(target).add(this);
         BoundEffect();

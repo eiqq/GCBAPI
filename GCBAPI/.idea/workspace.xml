@@ -143,7 +143,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Timestop.java</url>
-          <line>67</line>
+          <line>65</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -168,7 +168,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Timestop.java</url>
-          <line>82</line>
+          <line>80</line>
           <option name="timeStamp" value="47" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -228,7 +228,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Stealth.java</url>
-          <line>156</line>
+          <line>155</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -268,7 +268,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Invincible.java</url>
-          <line>86</line>
+          <line>85</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -393,7 +393,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Stun.java</url>
-          <line>83</line>
+          <line>81</line>
           <properties class="org.EIQUI.GCBAPI.Core.CC.Stun" method="stunEffect">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -411,7 +411,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Stealth.java</url>
-          <line>97</line>
+          <line>96</line>
           <properties class="org.EIQUI.GCBAPI.Core.BeneficialEffect.Stealth" method="hasStealth">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -498,6 +498,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="94" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/HitscanProjectile.java</url>
+          <line>20</line>
+          <properties class="org.EIQUI.GCBAPI.Core.projectile.HitscanProjectile" method="spawn">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="97" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

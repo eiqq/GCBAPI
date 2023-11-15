@@ -54,7 +54,6 @@ public class Invincible {
             }
         }
 
-        // Initialize the invincibles set if necessary.
         invincibles.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 
         invincibleed.put(this.target, true);

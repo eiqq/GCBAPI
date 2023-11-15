@@ -67,7 +67,7 @@ public class Buff {
                 public void run() {
                     tick();
                 }
-            }.runTaskTimer(that, 0L, 1L); // 주의: 실제 코드에서는 적절한 지연 시간을 설정해야 합니다.
+            }.runTaskTimer(that, 0L, 1L);
         }
     }
 

@@ -56,10 +56,8 @@ public class Timestop {
             }
         }
 
-        // Initialize the timestops set if necessary.
         timestops.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 
-        // Store the initial location.
         timestoplocation.put(this.target, UnitCollision.WithBlock_Location(this.target,this.target.getVelocity(),
                 this.target.getBoundingBox().getWidthX()/2,this.target.getBoundingBox().getHeight(),0));
         timestopEffect();

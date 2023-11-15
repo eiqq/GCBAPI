@@ -55,7 +55,6 @@ public class Stealth {
             }
         }
 
-        // Initialize the stealths set if necessary.
         stealths.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 
         stealthed.put(this.target, true);

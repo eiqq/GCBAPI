@@ -56,9 +56,7 @@ public class Stun {
             }
         }
 
-        // Initialize the stuns set if necessary.
         stuns.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
-        // Store the initial location.
         stunlocation.put(this.target, target.getLocation());
         stuns.get(target).add(this);
         if (target.getType().isAlive()) {
