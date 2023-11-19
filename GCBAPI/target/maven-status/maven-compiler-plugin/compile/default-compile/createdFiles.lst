@@ -6,6 +6,7 @@ org\EIQUI\GCBAPI\Core\BehavioralEffect\Hold.class
 org\EIQUI\GCBAPI\Core\BeneficialEffect\Invincible$1.class
 org\EIQUI\GCBAPI\Core\stat\Health.class
 org\EIQUI\GCBAPI\Core\stat\AttackPower.class
+org\EIQUI\GCBAPI\Core\skill\Skill.class
 org\EIQUI\GCBAPI\Core\BeneficialEffect\Invincible.class
 org\EIQUI\GCBAPI\Core\BehavioralEffect\SelfMovementSpeedControl$1.class
 org\EIQUI\GCBAPI\Core\BeneficialEffect\Invincible$InvincibleHandler.class
@@ -30,9 +31,12 @@ org\EIQUI\GCBAPI\Core\CC\Stun$1.class
 org\EIQUI\GCBAPI\HitboxAPI.class
 org\EIQUI\GCBAPI\events\PlayerMeleeAttack$1$1.class
 org\EIQUI\GCBAPI\Core\CC\Bound$1.class
+org\EIQUI\GCBAPI\Core\skill\Skill$1.class
 org\EIQUI\GCBAPI\Core\BeneficialEffect\Untargetable$1.class
+org\EIQUI\GCBAPI\Core\skill\Skill$SkillHandler.class
 org\EIQUI\GCBAPI\events\PlayerKeyInput.class
 org\EIQUI\GCBAPI\UI.class
+org\EIQUI\GCBAPI\Core\skill\SkillStacker$1.class
 org\EIQUI\GCBAPI\Core\Costume$1.class
 org\EIQUI\GCBAPI\UnitCollision.class
 org\EIQUI\GCBAPI\Core\CC\Stun.class
@@ -55,6 +59,7 @@ org\EIQUI\GCBAPI\Core\CC\Bound$BoundHandler.class
 org\EIQUI\GCBAPI\Core\stat\CooldownReduce.class
 org\EIQUI\GCBAPI\particle\ParticleAPI$5.class
 org\EIQUI\GCBAPI\Core\CC\Bound$2.class
+org\EIQUI\GCBAPI\Core\skill\SkillStacker$SkillStackerHandler.class
 org\EIQUI\GCBAPI\Core\BehavioralEffect\CannotBaseAttack$1.class
 org\EIQUI\GCBAPI\Core\stat\Stat$StatHandler.class
 org\EIQUI\GCBAPI\events\PlayerControlVehicle$1$1.class
@@ -66,6 +71,7 @@ org\EIQUI\GCBAPI\Core\Buff.class
 org\EIQUI\GCBAPI\Core\BeneficialEffect\Stealth$1.class
 org\EIQUI\GCBAPI\Core\projectile\AABBProjectile.class
 org\EIQUI\GCBAPI\test.class
+org\EIQUI\GCBAPI\Core\skill\SkillStacker.class
 org\EIQUI\GCBAPI\Core\CC\Slow$1.class
 org\EIQUI\GCBAPI\Core\Shield$1.class
 org\EIQUI\GCBAPI\particle\ParticleAPI$6.class

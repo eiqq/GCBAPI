@@ -4,6 +4,8 @@ import org.EIQUI.GCBAPI.Core.BehavioralEffect.*;
 import org.EIQUI.GCBAPI.Core.BeneficialEffect.*;
 import org.EIQUI.GCBAPI.Core.CC.*;
 import org.EIQUI.GCBAPI.Core.projectile.Projectile;
+import org.EIQUI.GCBAPI.Core.skill.Skill;
+import org.EIQUI.GCBAPI.Core.skill.SkillStacker;
 import org.EIQUI.GCBAPI.Core.stat.Stat;
 
 import static org.EIQUI.GCBAPI.main.that;
@@ -37,5 +39,8 @@ public class Core {
 
         that.getServer().getPluginManager().registerEvents(new Projectile.ProjectileHandler(), that);
         that.getServer().getPluginManager().registerEvents(new Stat.StatHandler(),that);
+
+        that.getServer().getPluginManager().registerEvents(new Skill.SkillHandler(), that);
+        that.getServer().getPluginManager().registerEvents(new SkillStacker.SkillStackerHandler(),that);
     }
 }

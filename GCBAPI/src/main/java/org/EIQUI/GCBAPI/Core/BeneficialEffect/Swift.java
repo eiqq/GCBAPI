@@ -1,6 +1,7 @@
 package org.EIQUI.GCBAPI.Core.BeneficialEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
+import org.EIQUI.GCBAPI.Core.stat.Stat;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
@@ -34,7 +35,6 @@ public class Swift {
     private int duration;
     private double power;
     private BukkitTask timerTask;
-    private AttributeModifier swiftModifier;
 
     public Swift(@Nullable Entity caster, LivingEntity target, int duration, double power, String name, UUID id) {
         this.duration = duration;
@@ -58,10 +58,8 @@ public class Swift {
         swifts.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
 
         swifted.put(this.target, true);
-        swifts.get(target).add(this);
-        swiftModifier = new AttributeModifier(id, name, this.power, AttributeModifier.Operation.ADD_SCALAR);
-        this.target.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).addModifier(swiftModifier);
-
+        swifts.get(this.target).add(this);
+        Stat.MOVEMENT_SPEED.setScalarBonus(this.target,Stat.MOVEMENT_SPEED.getScalarBonus(this.target) + this.power);
         timerTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -91,7 +89,7 @@ public class Swift {
             swifts.get(target).remove(this);
             timerTask.cancel();
             duration = 0;
-            target.getAttribute(Attribute.GENERIC_MOVEMENT_SPEED).removeModifier(swiftModifier);
+            Stat.MOVEMENT_SPEED.setScalarBonus(this.target,Stat.MOVEMENT_SPEED.getScalarBonus(this.target) - this.power);
             if (swifts.get(target).isEmpty()) {
                 swifted.put(target, false);
                 swifts.get(target).clear();

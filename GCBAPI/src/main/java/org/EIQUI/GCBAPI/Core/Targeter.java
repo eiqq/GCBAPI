@@ -75,14 +75,23 @@ public class Targeter {
         eyelocation = eyelocation.add(eyevector.normalize().multiply(radius));
         RayTraceResult ray;
         if(hitblock){
-           ray = eyelocation.getWorld()
-                   .rayTrace(eyelocation,eyevector,range, FluidCollisionMode.NEVER,true,radius,pred);
-
+            RayTraceResult temprayblock =  eyelocation.getWorld()
+                    .rayTraceBlocks(eyelocation,eyevector,range, FluidCollisionMode.NEVER, true);
+            ray = eyelocation.getWorld()
+                    .rayTrace(eyelocation,eyevector,range, FluidCollisionMode.NEVER,true,radius,pred);
+            if(temprayblock != null && temprayblock.getHitBlock() != null){
+                if(ray != null && ray.getHitEntity() != null){
+                    if(temprayblock.getHitPosition().distanceSquared(eyelocation.toVector())
+                            < ray.getHitPosition().distanceSquared(eyelocation.toVector())){
+                        ray = null;
+                    }
+                }
+            }
         }else{
             ray = eyelocation.getWorld()
                     .rayTraceEntities(eyelocation,eyevector,range,radius,pred);
         }
-        if(ray == null|| ray.getHitEntity() == null){
+        if(ray == null || ray.getHitEntity() == null){
             return null;
         }
         return ray.getHitEntity();
@@ -147,7 +156,7 @@ public class Targeter {
         if(startradius < 0){
             startradius = 0;
         }
-        Location eyelocation = null;
+        Location eyelocation;
         if(e instanceof LivingEntity){
             eyelocation = ((LivingEntity)e).getEyeLocation();
         }else{
@@ -156,31 +165,40 @@ public class Targeter {
         if(eyevector == null){
             eyevector = Util.getVector(eyelocation.getYaw(),eyelocation.getPitch());
         }
-        Location finalEyelocation = eyelocation;
-        Vector finalEyevector = eyevector;
+        Location finalEyelocation = eyelocation.clone();
+        Vector finalEyevector = eyevector.clone();
         float finalStartradius = startradius;
         Predicate<Entity> hitboxpred = ent ->
-                HitboxAPI.isHitboxCollide_ConeWithDot(finalEyelocation, finalEyevector,range, finalStartradius,endradius,ent);
+                HitboxAPI.isHitboxCollide_ConeWithDot(finalEyelocation.clone(), finalEyevector.clone(),range, finalStartradius,endradius,ent);
 
         Predicate<Entity> pred;
         if(predicate != null){
-            pred = ent -> (basicFiller(e,ent) && predicate.test(ent)) && hitboxpred.test(ent);
+            pred = ent -> (basicFiller(e,ent)) && hitboxpred.test(ent) && predicate.test(ent);
         }else{
             pred = ent -> (basicFiller(e,ent)) && hitboxpred.test(ent);
         }
 
         RayTraceResult ray;
         if(hitblock){
+            RayTraceResult temprayblock =  eyelocation.getWorld()
+                    .rayTraceBlocks(eyelocation,eyevector,range, FluidCollisionMode.NEVER, true);
             ray = eyelocation.getWorld()
-                    .rayTrace(eyelocation,eyevector,range, FluidCollisionMode.NEVER,
-                            true,(Math.max(startradius,endradius)),pred);
+                    .rayTraceEntities(eyelocation,eyevector,range,(Math.max(startradius,endradius)),pred);
+            if(temprayblock != null && temprayblock.getHitBlock() != null){
+                if(ray != null && ray.getHitEntity() != null){
+                    if(temprayblock.getHitPosition().distanceSquared(eyelocation.toVector())
+                            < ray.getHitPosition().distanceSquared(eyelocation.toVector())){
+                        ray = null;
+                    }
+                }
+            }
         }else{
             ray = eyelocation.getWorld()
                     .rayTraceEntities(eyelocation,eyevector,range,(Math.max(startradius,endradius)),pred);
 
         }
         if(ray == null || ray.getHitEntity() == null){
-            return getEntityTargetEntity(e,eyevector,Math.min(startradius,endradius),range,hitblock);
+            return getEntityTargetEntity(e,eyevector,Math.min(startradius,endradius),range,hitblock,predicate);
         }
         return ray.getHitEntity();
     }

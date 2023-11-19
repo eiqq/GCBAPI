@@ -65,7 +65,7 @@ public class MovementSpeed implements BasedAttribute {
     public double getTotalBonus(LivingEntity e) {
         double base = getBase(e);
         double total = base*(getScalarBonus(e)+1)*(getMultiplierBonus(e)+1);
-        return (total-base)*20;
+        return (total-base);
     }
 
     @Override

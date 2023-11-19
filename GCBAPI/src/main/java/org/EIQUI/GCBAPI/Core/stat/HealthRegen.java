@@ -9,12 +9,21 @@ import java.util.Map;
 public class HealthRegen implements NonBasedAttribute {
     public static final String NAME = "HEALTHREGEN";
     private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();
+    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();
     private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();
 
     @Override
     public double getTotal(LivingEntity e) {
         if(TOTAL.containsKey(e)){
             return TOTAL.get(e);
+        }
+        return 0;
+    }
+
+    @Override
+    public double getFixedBonus(LivingEntity e) {
+        if(BONUS_FIXED.containsKey(e)){
+            return BONUS_FIXED.get(e);
         }
         return 0;
     }
@@ -35,24 +44,33 @@ public class HealthRegen implements NonBasedAttribute {
     }
 
     @Override
-    public void setTotal(LivingEntity e, double value) {
-        TOTAL.put(e,value);
+    public void setFixedBonus(LivingEntity e, double value) {
+        BONUS_FIXED.put(e,value);
+        update(e);
     }
 
     @Override
     public void setMultiplierBonus(LivingEntity e, double value) {
         BONUS_MULTIPLIER.put(e,value);
-        setTotal(e,getTotal(e)*getMultiplierBonus(e));
+        update(e);
     }
+
+    @Override
+    public void update(LivingEntity e) {
+        TOTAL.put(e,getFixedBonus(e)*(1+getMultiplierBonus(e)));
+    }
+
 
     @Override
     public void clear() {
         TOTAL.clear();
+        BONUS_FIXED.clear();
         BONUS_MULTIPLIER.clear();
     }
     @Override
     public void clear(LivingEntity e) {
         TOTAL.remove(e);
+        BONUS_FIXED.remove(e);
         BONUS_MULTIPLIER.remove(e);
     }
 }

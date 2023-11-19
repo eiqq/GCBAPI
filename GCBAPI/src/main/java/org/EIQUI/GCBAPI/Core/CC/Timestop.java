@@ -27,7 +27,7 @@ public class Timestop {
 
 
     private Entity caster;
-    private Entity target;
+    private final Entity target;
     private String name;
     private UUID id;
     private int duration;

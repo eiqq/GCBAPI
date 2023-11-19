@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
+import org.bukkit.block.CommandBlock;
 import org.bukkit.block.TileState;
 import org.bukkit.block.data.BlockData;
 
@@ -27,7 +28,7 @@ public class BlockBreaker {
                     Block b = w.getBlockAt(minX+x,minY+y,minZ+z);
                     if (!(b.getBlockData().getMaterial().equals(Material.BEDROCK)
                             || b.getBlockData().getMaterial().equals(Material.AIR)
-                            || b.getState() instanceof TileState)){
+                            || b.getState() instanceof CommandBlock)){
                         Location tl = b.getLocation();
                         if(tl.distanceSquared(l) <= rr){
                             saved.put(tl,new BlockSaver(b.getType(),b.getBlockData()));

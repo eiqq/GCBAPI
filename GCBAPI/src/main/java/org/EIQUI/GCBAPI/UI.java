@@ -1,96 +1,79 @@
 package org.EIQUI.GCBAPI;
 
-import ch.njol.skript.Skript;
-import ch.njol.skript.lang.SkriptEvent;
 import ch.njol.skript.variables.Variables;
-import net.md_5.bungee.api.ChatMessageType;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
-import org.bukkit.GameMode;
+import org.EIQUI.GCBAPI.Core.CC.*;
+import org.EIQUI.GCBAPI.Core.UnitVector;
+import org.EIQUI.GCBAPI.Core.skill.Skill;
+import org.EIQUI.GCBAPI.Core.skill.SkillStacker;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-
-import java.util.Objects;
 
 
 public class UI {
 
-    public static String CooldownActionBar(Player p,String ID){
+    public static String CooldownActionBar(Player p){
         String result = "";
-        String uuid = String.valueOf(p.getUniqueId());
+        result += getCCText(p);
 
-        String cc = (String) Variables.getVariable("파오캐::UI::"+uuid+"::cctext",null,false);
-        if (cc != null){
-            result += cc;
-        }
-        if(Variables.getVariable(ID+"::"+uuid+"::"+0,null,false) != null){
-            String skill = (String) Variables.getVariable(ID+"::"+uuid+"::"+0,null,false);
-            int cooldown = ((Long) Variables.getVariable(ID+"::"+uuid+"::cooldown::"+skill,null,false)).intValue();
-            if(Variables.getVariable(ID+"::"+uuid+"::staker::"+skill,null,false) != null){
-                int scd = ((Long) Variables.getVariable(ID+"::"+uuid+"::staker::"+skill+".cooldown",null,false)).intValue();
-                if(cooldown > 0) {
-                    result += "§b§l";
-                    result += "[";
-                    result += (int) Math.ceil(scd * 0.05);
-                    result += "]";
-                    Object stack = Variables.getVariable(ID + "::" + uuid + "::staker::" + skill + ".stack", null, false);
-                    if (stack != null) {
-                        int stackintvar = ((Long) stack).intValue();
-                        if (stackintvar > 0) {
-                            result += getSmallNumber(stackintvar);
-                        }
-                    }
-                    result += " ";
-                }
-            }else{
-                if(cooldown > 0) {
-                    result += "§b§l";
-                    result += "[";
-                    result += (int) Math.ceil(cooldown * 0.05);
-                    result += "]";
-                    result += " ";
-                }
+        double tempcooldown = Skill.getCooldownAt(p,0);
+        String tempskill = Skill.getSkill(p,0);
+        if(tempskill != null && tempcooldown > 0){
+            result += "§b§l";
+            result += "[";
+            result += (int) Math.ceil(tempcooldown);
+            result += "]";
+            int stack = SkillStacker.getStack(p,tempskill);
+            if (stack > 0) {
+                result += getSmallNumber(stack);
             }
+            result += " ";
         }
 
         for(int i = 1;i<=4;i++){
-            if(Variables.getVariable(ID+"::"+uuid+"::"+i,null,false) != null){
-                String skill = (String) Variables.getVariable(ID+"::"+uuid+"::"+i,null,false);
-                int cooldown = ((Long) Variables.getVariable(ID+"::"+uuid+"::cooldown::"+skill,null,false)).intValue();
-                if(Variables.getVariable(ID+"::"+uuid+"::staker::"+skill,null,false) != null){
-                    int scd = ((Long) Variables.getVariable(ID+"::"+uuid+"::staker::"+skill+".cooldown",null,false)).intValue();
-                    if(cooldown > 0){
-                        result += "§a§l";
-                    }else{
-                        result += "§2§l";
-                    }
-                    result += "[";
-                    result += (int)Math.ceil(scd*0.05);
-                    result += "]";
-                    Object stack = Variables.getVariable(ID+"::"+uuid+"::staker::"+skill+".stack",null,false);
-                    if(stack != null){
-                        int stackintvar = ((Long) stack).intValue();
-                        if(stackintvar > 0) {
-                            result += getSmallNumber(stackintvar);
-                        }
-                    }
-                    result += " ";
-
+            tempskill = Skill.getSkill(p,i);
+            if(tempskill != null){
+                tempcooldown = Skill.getCooldownAt(p,i);
+                if(tempcooldown > 0){
+                    result += "§a§l";
                 }else{
-                    if(cooldown > 0){
-                        result += "§a§l";
-                    }else{
-                        result += "§2§l";
-                    }
-                    result += "[";
-                    result += (int)Math.ceil(cooldown*0.05);
-                    result += "]";
-                    result += " ";
+                    result += "§2§l";
                 }
+                result += "[";
+                if(SkillStacker.hasStacker(p,tempskill)){
+                    result += (int) Math.ceil(SkillStacker.getCooldown(p,tempskill));
+                }else{
+                    result += (int) Math.ceil(tempcooldown);
+                }
+                result += "]";
+                int stack = SkillStacker.getStack(p,tempskill);
+                if (stack > 0) {
+                    result += getSmallNumber(stack);
+                }
+                result += " ";
             }
         }
         return result;
     }
 
+    private static String getCCText(Entity e){
+        if (Timestop.isTimestopped(e)){
+            return "§c§l[TIMESTOP]";
+        }else if (UnitVector.isCC(e)) {
+            return "§b§l[AIRBORNE]";
+        } else if (Stun.isStuned(e)) {
+            return "§6§l[STUN]";
+        }else if (Suspend.isSuspended(e)) {
+            return "§3§l[SUSPEND]";
+        }else if (Silent.isSilented(e)) {
+            return "§f§l[SILENT]";
+        }else if (Bound.isBounded(e)) {
+            return "§3§l[BOUND]";
+        }else if (Slow.isSlowed(e)) {
+            return "§7§l[SLOW]";
+        } else{
+            return "";
+        }
+    }
     private static String getSmallNumber(int i){
         if (i == 0){
             return "⁰";

@@ -13,8 +13,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -48,6 +48,9 @@
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.EIQUI.GCBAPI.util.nms" />
       <recent name="org.EIQUI.GCBAPI.fabric" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="org.EIQUI.GCBAPI.Core" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.EIQUI.GCBAPI.Core.BehavioralEffect" />
@@ -238,7 +241,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>145</line>
+          <line>154</line>
           <option name="timeStamp" value="68" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -258,13 +261,8 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/Armor.java</url>
-          <line>20</line>
+          <line>16</line>
           <option name="timeStamp" value="80" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/MovementSpeed.java</url>
-          <line>65</line>
-          <option name="timeStamp" value="81" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Invincible.java</url>
@@ -287,19 +285,24 @@
           <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/CooldownReduce.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="91" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/Armor.java</url>
-          <line>32</line>
+          <line>18</line>
           <option name="timeStamp" value="92" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/Health.java</url>
           <line>104</line>
           <option name="timeStamp" value="95" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
+          <line>90</line>
+          <option name="timeStamp" value="102" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
+          <line>73</line>
+          <option name="timeStamp" value="104" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/HitboxAPI.java</url>
@@ -420,7 +423,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>188</line>
+          <line>206</line>
           <properties class="org.EIQUI.GCBAPI.Core.Targeter" method="getLocation">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -507,6 +510,15 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="97" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/SkillStacker.java</url>
+          <line>50</line>
+          <properties class="org.EIQUI.GCBAPI.Core.skill.SkillStacker" method="getStack">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
