@@ -1,16 +1,15 @@
 package org.EIQUI.GCBAPI.particle;
 
-import com.github.fierioziy.particlenativeapi.api.particle.type.ParticleType;
-import org.EIQUI.GCBAPI.fabric.FabricC2S;
-import org.bukkit.*;
-import org.bukkit.entity.Player;
+import org.EIQUI.GCBAPI.Util;
+import org.bukkit.Location;
+import org.bukkit.Particle;
+import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static ch.njol.util.VectorMath.getYaw;
 import static org.EIQUI.GCBAPI.Util.getVector;
 import static org.EIQUI.GCBAPI.main.that;
 import static org.bukkit.util.NumberConversions.round;
@@ -129,7 +128,7 @@ public class ComplexParticleAPI {
         }
         s = s.clone();
         e = e.clone();
-        double yaw = getYaw(v);
+        double yaw = Util.getYaw(v);
         Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2);
         v2.multiply(radius);
         double distance = e.distance(s);

@@ -2,31 +2,25 @@ package org.EIQUI.GCBAPI.Core.BeneficialEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.EIQUI.GCBAPI.Core.stat.Stat;
-import org.bukkit.attribute.Attribute;
-import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.EIQUI.GCBAPI.main.that;
 
 public class Swift {
     private static final Map<LivingEntity, Set<Swift>> swifts = new ConcurrentHashMap<>();
-    private static final Map<LivingEntity, Boolean> swifted = new ConcurrentHashMap<>();
+    private static final Map<LivingEntity, Boolean> swifted = new HashMap<>();
 
     private Entity caster;
     private LivingEntity target;

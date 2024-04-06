@@ -7,12 +7,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -20,7 +20,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class CannotBaseAttack {
     private static final Map<Entity, CannotBaseAttack> cannotbaseattack = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> cannotbaseattacked = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> cannotbaseattacked = new HashMap<>();
 
     private LivingEntity target;
     private int duration;
@@ -64,11 +64,12 @@ public class CannotBaseAttack {
         for (Entity entity : cannotbaseattack.keySet()) {
             remove(entity);
         }
+        cannotbaseattack.clear();
         cannotbaseattacked.clear();
     }
 
     public static void remove(Entity target) {
-        if (isCannotBaseAttack(target)) {
+        if (Boolean.TRUE.equals(cannotbaseattacked.get(target))) {
             cannotbaseattacked.put(target, false);
             cannotbaseattack.get(target).duration = 0;
             cannotbaseattack.get(target).timerTask.cancel();

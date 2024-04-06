@@ -1,6 +1,5 @@
 package org.EIQUI.GCBAPI.Core;
 
-import jline.internal.Nullable;
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -8,14 +7,11 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.EntityTeleportEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
+import javax.annotation.Nullable;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -29,10 +25,19 @@ public class Buff {
     private volatile int duration;
     private final Entity target;
     private final String name;
-    private BukkitTask timerTask;
-
+    private int stack = 1;
     private static final Map<Entity, Set<Buff>> BUFFS = new ConcurrentHashMap<>();
     private static final Map<Entity, Set<String>> HAS_BUFF = new ConcurrentHashMap<>();
+    private BukkitTask task;
+
+    public Buff(){
+        caster = null;
+        originalDuration = 0;
+        duration = 0;
+        target = null;
+        name = null;
+        stack = 0;
+    }
 
     public Buff(@Nullable Entity caster, Entity target, int duration, String name) {
         if(caster == null){
@@ -44,54 +49,101 @@ public class Buff {
         this.duration = duration;
         this.originalDuration = duration;
         this.name = name;
-
         if(HAS_BUFF.containsKey(target) && HAS_BUFF.get(target).contains(name)){
             for(Buff buf :BUFFS.get(target)){
                 if(buf.name.equals(this.name)){
-                    buf.duration = this.duration;
-                    buf.caster = this.caster;
-                    return;
+                    buf.remove();
                 }
             }
         }
-
         BUFFS.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
         HAS_BUFF.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
         BUFFS.get(target).add(this);
         HAS_BUFF.get(target).add(name);
-
-        // 타이머 설정
-        if (duration >= 0) {
-            timerTask = new BukkitRunnable() {
-                @Override
-                public void run() {
-                    tick();
-                }
-            }.runTaskTimer(that, 0L, 1L);
-        }
+        startTick();
     }
-
-    private void tick() {
-        if (duration == 0 || !target.isValid()) {
+    private void startTick(){
+        if(!target.isValid()){
             remove();
             return;
+        }
+        // 타이머 설정
+        if (duration >= 0 && (task == null || task.isCancelled())) {
+            task = new BukkitRunnable() {
+                @Override
+                public void run() {
+                    if(!tick()){
+                        cancel();
+                    }
+                }
+            }.runTaskTimer(that, 0L, 1L);
+        }else if(duration < 0 && task != null){
+            task.cancel();
+        }
+    }
+    private boolean tick() {
+        if (duration == 0 || !target.isValid() || stack <= 0) {
+            remove();
+            return false;
         }
         if (!Timestop.isTimestopped(target)) {
             duration--;
         }
+        return true;
     }
 
-    private void remove() {
-        if(timerTask != null){
-            timerTask.cancel();
-        }
+    public void remove() {
         duration = 0;
+        stack = 0;
         if (BUFFS.containsKey(target) && BUFFS.get(target) != null){
             BUFFS.get(target).remove(this);
         }
         if (HAS_BUFF.containsKey(target) && HAS_BUFF.get(target) != null){
             HAS_BUFF.get(target).remove(name);
         }
+        if(task != null){
+            task.cancel();
+        }
+    }
+
+    public void setStack(int s){
+        this.stack += s;
+    }
+    public int getStack(){
+        return this.stack;
+    }
+    public Entity getTarget(){
+        return target;
+    }
+    public Entity getCaster(){
+        return caster;
+    }
+    public void setCaster(@Nullable Entity e){
+        caster = e;
+    }
+    public int getDuration(){
+        return duration;
+    }
+    public void setDuration(int i ){
+        duration = i;
+        startTick();
+    }
+    public int getOriginalDuration(){
+        return originalDuration;
+    }
+    public String getName(){
+        return name;
+    }
+    //-----------------------------------------------
+    public static Buff getBuff(Entity e, String name){
+        if(HAS_BUFF.containsKey(e) && HAS_BUFF.get(e).contains(name)) {
+            for (Buff b : BUFFS.get(e)) {
+                if (b.name.equals(name)) {
+                    return b;
+                }
+            }
+        }
+        return new Buff();
     }
 
     public static Entity getCaster(Entity e, String name) {
@@ -115,7 +167,7 @@ public class Buff {
         return false;
     }
 
-    public static boolean hasAny(Entity e, String name){
+    public static boolean hasAny(Entity e){
         if(!BUFFS.containsKey(e)){
             return false;
         }
@@ -174,6 +226,7 @@ public class Buff {
             for (Buff b : BUFFS.get(e)) {
                 if (b.name.equals(name)) {
                     b.duration = d;
+                    b.startTick();
                     return;
                 }
             }
@@ -185,10 +238,32 @@ public class Buff {
             for (Buff b : BUFFS.get(e)) {
                 if (b.name.equals(name)) {
                     b.duration = b.originalDuration;
+                    b.startTick();
                     return;
                 }
             }
         }
+    }
+
+    public static void setStack(Entity e, String name,int stack){
+        if(HAS_BUFF.containsKey(e) && HAS_BUFF.get(e).contains(name)) {
+            for (Buff b : BUFFS.get(e)) {
+                if (b.name.equals(name)) {
+                    b.stack = stack;
+                    return;
+                }
+            }
+        }
+    }
+    public static int getStack(Entity e, String name){
+        if(HAS_BUFF.containsKey(e) && HAS_BUFF.get(e).contains(name)) {
+            for (Buff b : BUFFS.get(e)) {
+                if (b.name.equals(name)) {
+                    return b.stack;
+                }
+            }
+        }
+        return 0;
     }
 
     public static class BuffHandler implements Listener {
@@ -196,7 +271,9 @@ public class Buff {
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDeath(EntityDeathEvent e) {
-            removeAll(e.getEntity());
+            if(!e.getEntityType().equals(EntityType.PLAYER)){
+                removeAll(e.getEntity());
+            }
         }
     }
 }

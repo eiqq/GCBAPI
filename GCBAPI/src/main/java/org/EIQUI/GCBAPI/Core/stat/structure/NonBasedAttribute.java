@@ -2,9 +2,6 @@ package org.EIQUI.GCBAPI.Core.stat.structure;
 
 import org.bukkit.entity.LivingEntity;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public interface NonBasedAttribute {
 
 

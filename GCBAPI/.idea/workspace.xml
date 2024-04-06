@@ -33,17 +33,17 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/a4san/Desktop/intelij/Purpur&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.repository.indices&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "C:/Users/a4san/Desktop/intelij/GCBAPI",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="org.EIQUI.GCBAPI.util.nms" />
@@ -53,11 +53,11 @@
       <recent name="org.EIQUI.GCBAPI.Core" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="org.EIQUI.GCBAPI.Core.CC" />
       <recent name="org.EIQUI.GCBAPI.Core.BehavioralEffect" />
       <recent name="org.EIQUI.GCBAPI.Core.projectile" />
       <recent name="org.EIQUI.GCBAPI.Core.projectile.Event" />
       <recent name="org.EIQUI.GCBAPI.Core.BeneficialEffect" />
-      <recent name="org.EIQUI.GCBAPI.Core.CC" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -75,58 +75,43 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/HitboxAPI.java</url>
-          <line>191</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>65</line>
+          <line>68</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/PacketAPI.java</url>
-          <line>151</line>
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/PacketAPI.java</url>
+          <line>191</line>
           <option name="timeStamp" value="8" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/HitboxAPI.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/HitboxAPI.java</url>
-          <line>82</line>
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>49</line>
           <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>464</line>
+          <line>467</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>661</line>
+          <line>664</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>573</line>
+          <line>576</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>286</line>
+          <line>289</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/UnitCollision.java</url>
-          <line>229</line>
-          <option name="timeStamp" value="23" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>656</line>
+          <line>659</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -136,117 +121,57 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Unstopable.java</url>
-          <line>45</line>
+          <line>40</line>
           <option name="timeStamp" value="27" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Suspend.java</url>
-          <line>105</line>
+          <line>111</line>
           <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Timestop.java</url>
-          <line>65</line>
+          <line>66</line>
           <option name="timeStamp" value="30" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>61</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>70</line>
-          <option name="timeStamp" value="35" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>116</line>
-          <option name="timeStamp" value="40" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>186</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Timestop.java</url>
-          <line>80</line>
-          <option name="timeStamp" value="47" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Shield.java</url>
-          <line>165</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/GlowTo.java</url>
-          <line>92</line>
+          <line>115</line>
           <option name="timeStamp" value="50" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/GlowTo.java</url>
-          <line>118</line>
+          <line>153</line>
           <option name="timeStamp" value="51" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/GlowTo.java</url>
-          <line>67</line>
-          <option name="timeStamp" value="54" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Suspend.java</url>
-          <line>82</line>
+          <line>88</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>57</line>
+          <line>60</line>
           <option name="timeStamp" value="59" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>26</line>
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>45</line>
-          <option name="timeStamp" value="61" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ComplexParticleAPI.java</url>
-          <line>61</line>
+          <line>60</line>
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
-          <line>534</line>
+          <line>537</line>
           <option name="timeStamp" value="63" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>53</line>
-          <option name="timeStamp" value="64" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Stealth.java</url>
-          <line>155</line>
+          <line>151</line>
           <option name="timeStamp" value="65" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>23</line>
-          <option name="timeStamp" value="67" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>154</line>
-          <option name="timeStamp" value="68" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>48</line>
+          <line>67</line>
           <option name="timeStamp" value="69" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
@@ -266,23 +191,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Invincible.java</url>
-          <line>85</line>
+          <line>81</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Untargetable.java</url>
-          <line>136</line>
+          <line>132</line>
           <option name="timeStamp" value="85" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Unstopable.java</url>
-          <line>76</line>
+          <line>71</line>
           <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
-          <line>84</line>
-          <option name="timeStamp" value="89" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/Armor.java</url>
@@ -296,18 +216,213 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
-          <line>90</line>
+          <line>108</line>
           <option name="timeStamp" value="102" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
-          <line>73</line>
+          <line>91</line>
           <option name="timeStamp" value="104" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/CustomBehavioralEffect.java</url>
+          <line>35</line>
+          <option name="timeStamp" value="105" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
+          <line>238</line>
+          <option name="timeStamp" value="108" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
+          <line>111</line>
+          <option name="timeStamp" value="109" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
+          <line>137</line>
+          <option name="timeStamp" value="110" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/events/PlayerMeleeAttack.java</url>
+          <line>52</line>
+          <option name="timeStamp" value="111" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/events/PlayerMeleeAttack.java</url>
+          <line>53</line>
+          <option name="timeStamp" value="112" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>286</line>
+          <option name="timeStamp" value="114" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBWorldBorder.java</url>
+          <line>74</line>
+          <option name="timeStamp" value="118" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>160</line>
+          <option name="timeStamp" value="124" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>241</line>
+          <option name="timeStamp" value="128" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/display/DisplayEntityUtil.java</url>
+          <line>29</line>
+          <option name="timeStamp" value="129" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/display/DisplayEntityUtil.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="131" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/display/DisplayEntityUtil.java</url>
+          <line>121</line>
+          <option name="timeStamp" value="132" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/PacketAPI.java</url>
+          <line>88</line>
+          <option name="timeStamp" value="133" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/PacketAPI.java</url>
+          <line>19</line>
+          <option name="timeStamp" value="134" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="137" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>122</line>
+          <option name="timeStamp" value="139" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>123</line>
+          <option name="timeStamp" value="140" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>302</line>
+          <option name="timeStamp" value="144" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
+          <line>89</line>
+          <option name="timeStamp" value="152" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ComplexParticleAPI.java</url>
+          <line>176</line>
+          <option name="timeStamp" value="154" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
+          <line>84</line>
+          <option name="timeStamp" value="156" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
+          <line>159</line>
+          <option name="timeStamp" value="159" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
+          <line>258</line>
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/PacketAPI.java</url>
+          <line>18</line>
+          <option name="timeStamp" value="163" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/Hold.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="165" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Timestop.java</url>
+          <line>113</line>
+          <option name="timeStamp" value="167" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>367</line>
+          <option name="timeStamp" value="169" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>268</line>
+          <option name="timeStamp" value="175" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>101</line>
+          <option name="timeStamp" value="179" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>217</line>
+          <option name="timeStamp" value="183" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>247</line>
+          <option name="timeStamp" value="184" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>367</line>
+          <option name="timeStamp" value="186" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/Model.java</url>
+          <line>168</line>
+          <option name="timeStamp" value="187" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>281</line>
+          <option name="timeStamp" value="189" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/sound/Sound.java</url>
+          <line>57</line>
+          <option name="timeStamp" value="192" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>331</line>
+          <option name="timeStamp" value="193" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/Model.java</url>
+          <line>23</line>
+          <option name="timeStamp" value="195" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
+          <line>71</line>
+          <option name="timeStamp" value="196" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/HitboxAPI.java</url>
-          <line>309</line>
-          <properties class="org.EIQUI.GCBAPI.HitboxAPI" method="getEntity_inCube">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>227</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI" method="getEntity_inCube">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
@@ -315,7 +430,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>408</line>
+          <line>504</line>
           <properties class="org.EIQUI.GCBAPI.Core.projectile.Projectile">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -323,26 +438,8 @@
           <option name="timeStamp" value="29" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>60</line>
-          <properties class="org.EIQUI.GCBAPI.Core.projectile.Projectile" method="spawn">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="39" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
-          <line>185</line>
-          <properties class="org.EIQUI.GCBAPI.Core.projectile.Projectile" method="makecollision0">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="41" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
-          <line>107</line>
+          <line>159</line>
           <properties class="org.EIQUI.GCBAPI.Core.Buff" method="hasBuff">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -351,7 +448,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/AABBProjectile.java</url>
-          <line>42</line>
+          <line>35</line>
           <properties class="org.EIQUI.GCBAPI.Core.projectile.AABBProjectile" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -360,7 +457,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Costume.java</url>
-          <line>40</line>
+          <line>39</line>
           <properties class="org.EIQUI.GCBAPI.Core.Costume" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -369,7 +466,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
-          <line>73</line>
+          <line>83</line>
           <properties class="org.EIQUI.GCBAPI.Core.Buff" method="tick">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -378,7 +475,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/GlowTo.java</url>
-          <line>77</line>
+          <line>107</line>
           <properties class="org.EIQUI.GCBAPI.Core.BehavioralEffect.GlowTo" method="isGlowTo">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -387,7 +484,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/GlowTo.java</url>
-          <line>66</line>
+          <line>96</line>
           <properties class="org.EIQUI.GCBAPI.Core.BehavioralEffect.GlowTo" method="removeGlowTo">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -395,17 +492,8 @@
           <option name="timeStamp" value="53" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Stun.java</url>
-          <line>81</line>
-          <properties class="org.EIQUI.GCBAPI.Core.CC.Stun" method="stunEffect">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="56" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Invincible.java</url>
-          <line>34</line>
+          <line>30</line>
           <properties class="org.EIQUI.GCBAPI.Core.BeneficialEffect.Invincible" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -414,7 +502,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Stealth.java</url>
-          <line>96</line>
+          <line>95</line>
           <properties class="org.EIQUI.GCBAPI.Core.BeneficialEffect.Stealth" method="hasStealth">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -423,7 +511,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
-          <line>206</line>
+          <line>144</line>
           <properties class="org.EIQUI.GCBAPI.Core.Targeter" method="getLocation">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -432,7 +520,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/stat/Stat.java</url>
-          <line>45</line>
+          <line>44</line>
           <properties class="org.EIQUI.GCBAPI.Core.stat.Stat" method="removeAllModifier">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -449,17 +537,8 @@
           <option name="timeStamp" value="79" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/CC/Bound.java</url>
-          <line>100</line>
-          <properties class="org.EIQUI.GCBAPI.Core.CC.Bound" method="removeBound">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="82" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BeneficialEffect/Untargetable.java</url>
-          <line>135</line>
+          <line>131</line>
           <properties class="org.EIQUI.GCBAPI.Core.BeneficialEffect.Untargetable" method="checkIsUntargetableEntity">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -468,7 +547,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
-          <line>36</line>
+          <line>41</line>
           <properties class="org.EIQUI.GCBAPI.Core.Buff" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
@@ -520,7 +599,254 @@
           </properties>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>206</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI" method="getEntity_inCylinder">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="119" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>118</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI" method="isCollide_AABBWithBlock">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="120" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>148</line>
+          <properties class="org.EIQUI.GCBAPI.Core.UnitCollision" method="findEmptySpace">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="123" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>234</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI" method="getEntity_inCube">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="125" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Costume.java</url>
+          <line>160</line>
+          <properties class="org.EIQUI.GCBAPI.Core.Costume" method="getAllCostumes">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="126" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/display/DisplayEntityUtil.java</url>
+          <line>25</line>
+          <properties class="org.EIQUI.GCBAPI.Core.display.DisplayEntityUtil" method="applyTransformation">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="130" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/UnitCollision.java</url>
+          <line>56</line>
+          <properties class="org.EIQUI.GCBAPI.Core.UnitCollision" method="WithUnit_Location">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="138" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Shield.java</url>
+          <line>307</line>
+          <properties class="org.EIQUI.GCBAPI.Core.Shield" method="resetDuration">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="146" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Targeter.java</url>
+          <line>166</line>
+          <properties class="org.EIQUI.GCBAPI.Core.Targeter" method="getBlock">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="148" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>275</line>
+          <properties class="org.EIQUI.GCBAPI.Core.GCBNameTag" method="remove">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="155" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/Buff.java</url>
+          <line>126</line>
+          <properties class="org.EIQUI.GCBAPI.Core.Buff" method="setDuration">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="157" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/skill/Skill.java</url>
+          <line>49</line>
+          <properties class="org.EIQUI.GCBAPI.Core.skill.Skill" method="getSkill">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="158" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/projectile/Projectile.java</url>
+          <line>110</line>
+          <properties class="org.EIQUI.GCBAPI.Core.projectile.Projectile" method="tick">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>196</line>
+          <properties class="org.EIQUI.GCBAPI.Core.GCBNameTag" method="hideFor">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="162" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/particle/ParticleAPI.java</url>
+          <line>41</line>
+          <properties class="org.EIQUI.GCBAPI.particle.ParticleAPI" method="RedstoneParticleDot">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="164" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/BehavioralEffect/Hold.java</url>
+          <line>54</line>
+          <properties class="org.EIQUI.GCBAPI.Core.BehavioralEffect.Hold" method="tick">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="166" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>34</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI" method="isCollide_SphereWithAABB">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="168" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/HitboxAPI.java</url>
+          <line>366</line>
+          <properties class="org.EIQUI.GCBAPI.Core.HitboxAPI">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="170" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>267</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="setVisible">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="173" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>330</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="changePart">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="174" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>100</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="removeModelAll">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="180" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>177</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="stopAnimation">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="181" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>204</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="setAnimationSpeed">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="182" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/Model.java</url>
+          <line>42</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.Model" method="add">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="190" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>75</line>
+          <properties class="org.EIQUI.GCBAPI.Core.GCBNameTag" method="tick">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="191" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/ModelEngine/MEAPI.java</url>
+          <line>345</line>
+          <properties class="org.EIQUI.GCBAPI.ModelEngine.MEAPI" method="getAllBonesName">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="194" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/EIQUI/GCBAPI/Core/GCBNameTag.java</url>
+          <line>328</line>
+          <properties class="org.EIQUI.GCBAPI.Core.GCBNameTag.GCBNameTagHandler" method="onTeleport">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="197" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

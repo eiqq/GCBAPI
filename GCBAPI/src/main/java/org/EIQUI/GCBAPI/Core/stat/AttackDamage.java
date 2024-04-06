@@ -6,15 +6,15 @@ import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.LivingEntity;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class AttackDamage implements BasedAttribute {
     public static final Attribute TYPE = Attribute.GENERIC_ATTACK_DAMAGE;
     public static final String NAME = "AD";
     public static final String NAMESPACE_Fixed = "State::"+NAME+"_FixedBonus";
     public static final String NAMESPACE_Scalar = "State::"+NAME+"_ScalarBonus";
-    private static final Map<LivingEntity,Double> BONUS_SCALAR = new HashMap<>();
+    private static final Map<LivingEntity,Double> BONUS_SCALAR = new ConcurrentHashMap<>();
     public static final String NAMESPACE_Multiplier = "State::"+NAME+"_MultiplierBonus";
 
     @Override

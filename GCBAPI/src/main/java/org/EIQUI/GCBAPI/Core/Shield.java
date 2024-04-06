@@ -2,14 +2,12 @@ package org.EIQUI.GCBAPI.Core;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
-import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
@@ -22,18 +20,15 @@ public class Shield {
     private Entity caster;
     private final int originalDuration;
     private volatile int duration;
-    private float originalamount;
+    private final float originalamount;
     private float amount;
     private final Entity target;
     private String name;
     private UUID id;
     private int priority;
 
-    private BukkitTask timerTask;
-    private static final Map<Entity, LinkedHashSet<Shield>> SHIELDS = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> SHIELDED = new ConcurrentHashMap<>();
-
-    private static final Comparator<Shield> COMPARATOR = Comparator.comparingInt(p -> p.priority);
+    private static final Map<Entity, Set<Shield>> SHIELDS = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> SHIELDED = new HashMap<>();
 
     public Shield(Entity target,float amount , int duration, String name){
         this(target,target,amount,duration,name,UUID.randomUUID());
@@ -66,69 +61,69 @@ public class Shield {
         if(SHIELDS.containsKey(target)){
             for(Shield t :SHIELDS.get(target)){
                 if(t.id.equals(id)){
-                    t.removeShield();
+                    t.remove();
                 }
             }
         }
         SHIELDED.put(this.target,true);
-        if (!SHIELDS.containsKey(this.target)){
-            SHIELDS.put(this.target,new LinkedHashSet<>());
-        }
+
+        SHIELDS.computeIfAbsent(this.target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
         SHIELDS.get(this.target).add(this);
         sort(this.target);
-        timerTask = new BukkitRunnable() {
+        new BukkitRunnable() {
             @Override
             public void run() {
-                tick();
+                if (!tick()){
+                    cancel();
+                    return;
+                };
             }
         }.runTaskTimer(that, 0L, 1L);
     }
 
     private static void sort(Entity e){
-        if (!SHIELDS.containsKey(e)){
+        if (!SHIELDS.containsKey(e)) {
             return;
         }
-        List<Shield> tempList = new ArrayList<>(SHIELDS.get(e));
-        Collections.sort(tempList, COMPARATOR);
-        tempList.forEach(shield -> {
-            if(shield.amount <= 0 || shield.duration == 0){
-                shield.removeShield();
-            }
-        });
-        SHIELDS.put(e,new LinkedHashSet<>(tempList));
+        Set<Shield> shields = SHIELDS.get(e);
+        List<Shield> sortedList = new ArrayList<>(shields);
+        Collections.sort(sortedList, (s1, s2) -> Integer.compare(s2.priority, s1.priority));
+        Set<Shield> newSet = Collections.newSetFromMap(new ConcurrentHashMap<>());
+        newSet.addAll(sortedList);
+        SHIELDS.put(e, newSet);
     }
-    private void tick() {
-        if (duration == 0 || amount <= Vector.getEpsilon() || target.isDead() || !target.isValid()) {
-            removeShield();
-            sort(target);
-            return;
+
+    private boolean isValid(){
+        return duration != 0 && amount >= Vector.getEpsilon() && !target.isDead() && target.isValid();
+    }
+    private boolean tick() {
+        if (!isValid()) {
+            remove();
+            return false;
         }
-        if (duration > 0 && !Timestop.isTimestopped(target)) {
+        if (!Timestop.isTimestopped(target)) {
             duration--;
         }
+        return true;
     }
 
     public boolean isExists(){
-        if(!isShielded(target)){
-            return false;
-        }if(duration == 0 || amount <= Vector.getEpsilon()){
+        if(!isShielded(target) || !isValid()){
             return false;
         }
         return SHIELDS.get(target).contains(this);
     }
 
-    private void removeShield() {
+    private void remove() {
         if (SHIELDS.containsKey(target)) {
-            SHIELDS.get(target).remove(this);
             duration = 0;
             amount = 0;
-            if(timerTask != null){
-                timerTask.cancel();
-            }
+            SHIELDS.get(target).remove(this);
             if (SHIELDS.get(target).isEmpty()) {
                 SHIELDED.put(target, false);
                 SHIELDS.get(target).clear();
             }
+            sort(target);
         }else{
             SHIELDED.put(target, false);
         }
@@ -160,9 +155,6 @@ public class Shield {
     }
 
     public static boolean hasShield(@Nullable Entity e, String identifier) {
-        if(e == null){
-            return false;
-        }
         if(!isShielded(e)){
             return false;
         }
@@ -211,14 +203,14 @@ public class Shield {
         return ret;
     }
 
-    public static float getReducedByDamage(Entity e,float damage){
+    public static float getReducedByDamage(@Nullable Entity e,float damage){
         if(!isShielded(e) || damage <= 0){
             return damage;
         }
         for(Shield s: SHIELDS.get(e)){
             if(s.amount - damage < 0){
                 damage -= s.amount;
-                s.removeShield();
+                s.remove();
             }else{
                 s.amount -= damage;
                 return 0;
@@ -257,16 +249,16 @@ public class Shield {
         }
         for (Shield b : SHIELDS.get(e)) {
             if (id != null && b.id.equals(id) || b.name.equals(identifier)) {
-                b.removeShield();
+                b.remove();
             }
         }
     }
     public static void removeAll(Entity e){
-        if(!isShielded(e)){
+        if(!isShielded(e) || !SHIELDS.containsKey(e)){
             return;
         }
         for (Shield b : SHIELDS.get(e)) {
-            b.removeShield();
+            b.remove();
         }
         SHIELDS.get(e).clear();
         SHIELDED.put(e,false);
@@ -309,9 +301,6 @@ public class Shield {
         for (Shield b : SHIELDS.get(e)) {
             if (id != null && b.id.equals(id) || b.name.equals(identifier)) {
                 b.duration = d;
-                if (d < 0){
-                    b.timerTask.cancel();
-                }
             }
         }
     }
@@ -336,10 +325,7 @@ public class Shield {
     public static void clear(){
         for (Set<Shield> shields : SHIELDS.values()) {
             for (Shield b : shields) {
-                if (b.timerTask != null) {
-                    b.timerTask.cancel();
-                }
-                b.removeShield();
+                b.remove();
             }
         }
         SHIELDS.clear();

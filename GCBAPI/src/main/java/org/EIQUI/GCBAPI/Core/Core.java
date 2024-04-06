@@ -13,7 +13,7 @@ import static org.EIQUI.GCBAPI.main.that;
 public class Core {
 
     public static void Initialize(){
-        that.getServer().getPluginManager().registerEvents(new Bound.BoundHandler(), that);
+        that.getServer().getPluginManager().registerEvents(new Boundd.BoundHandler(), that);
         that.getServer().getPluginManager().registerEvents(new Silent.SilentHandler(), that);
         that.getServer().getPluginManager().registerEvents(new Slow.SlowHandler(), that);
         that.getServer().getPluginManager().registerEvents(new Stun.StunHandler(), that);
@@ -42,5 +42,9 @@ public class Core {
 
         that.getServer().getPluginManager().registerEvents(new Skill.SkillHandler(), that);
         that.getServer().getPluginManager().registerEvents(new SkillStacker.SkillStackerHandler(),that);
+
+        that.getServer().getPluginManager().registerEvents(new Costume.CostumeHandler(),that);
+        that.getServer().getPluginManager().registerEvents(new GCBWorldBorder.GCBBorderHandler(),that);
+        that.getServer().getPluginManager().registerEvents(new GCBNameTag.GCBNameTagHandler(),that);
     }
 }

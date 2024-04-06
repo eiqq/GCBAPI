@@ -4,13 +4,13 @@ import org.bukkit.entity.Entity;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class UnitVector {
 
-    private static final Map<Entity,UnitVector> UNITVECTORS = new HashMap<>();
+    private static final Map<Entity,UnitVector> UNITVECTORS = new ConcurrentHashMap<>();
 
     private Entity caster;
     private Entity target;

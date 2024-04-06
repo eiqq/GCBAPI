@@ -1,6 +1,6 @@
 package org.EIQUI.GCBAPI.Core.CC;
 
-import org.EIQUI.GCBAPI.PacketAPI;
+import org.EIQUI.GCBAPI.Core.PacketAPI;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
@@ -26,11 +26,12 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Stun {
     private static final Map<Entity, Set<Stun>> stuns = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> stuned = new ConcurrentHashMap<>();
-    private static final Map<Entity, Location> stunlocation = new ConcurrentHashMap<>();
+    private static final Map<UUID, Boolean> stuned = new HashMap<>();
+    private static final Map<UUID, Location> stunlocation = new HashMap<>();
 
     private Entity caster;
     private LivingEntity target;
+    private UUID targetUUID;
     private String name;
     private UUID id;
     private int duration;
@@ -47,6 +48,7 @@ public class Stun {
         this.target = target;
         this.name = name;
         this.id = id;
+        this.targetUUID = target.getUniqueId();
 
         if(stuns.containsKey(target)){
             for(Stun t :stuns.get(target)){
@@ -57,12 +59,12 @@ public class Stun {
         }
 
         stuns.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
-        stunlocation.put(this.target, target.getLocation());
+        stunlocation.put(targetUUID, target.getLocation());
         stuns.get(target).add(this);
         if (target.getType().isAlive()) {
             stunEffect();
         }
-        stuned.put(target, true);
+        stuned.put(targetUUID, true);
         timerTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -80,33 +82,30 @@ public class Stun {
         }
     }
     private void stunEffect() {
-        if (Boolean.TRUE.equals(stuned.get(target))) {
+        if (Boolean.TRUE.equals(stuned.get(targetUUID))) {
             return;
         }
-        boolean b = false;
-        if(target.getType().equals(EntityType.PLAYER)){
-            b = true;
-        }
-        boolean finalB = b;
+
         PotionEffect potion = new PotionEffect(PotionEffectType.JUMP,5,128,false,false,false);
         PotionEffect potion2 = new PotionEffect(PotionEffectType.SLOW,5,10,false,false,false);
-        BukkitTask efftask = new BukkitRunnable() {
+        new BukkitRunnable() {
+            boolean b = target.getType().equals(EntityType.PLAYER);
             @Override
             public void run() {
-                if (Boolean.FALSE.equals(stuned.get(target))) {
+                if (!Boolean.TRUE.equals(stuned.get(targetUUID))) {
                     this.cancel();
                     target.removePotionEffect(PotionEffectType.JUMP);
                     target.removePotionEffect(PotionEffectType.SLOW);
                     return;
                 }
-                if(finalB){
+                if(b){
                     if(!Timestop.isTimestopped(target)){
-                        Location l = stunlocation.get(target);
+                        Location l = stunlocation.get(targetUUID);
                         PacketAPI.sendLookAt((Player) target,l.getYaw(),l.getPitch());
                     }
                     target.addPotionEffect(potion);
                 }else{
-                    Location l = stunlocation.get(target);
+                    Location l = stunlocation.get(targetUUID);
                     target.setRotation(l.getYaw(),l.getPitch());
                 }
                 target.addPotionEffect(potion2);
@@ -118,7 +117,7 @@ public class Stun {
         if (target == null){
             return false;
         }
-        return Boolean.TRUE.equals(stuned.get(target));
+        return Boolean.TRUE.equals(stuned.get(target.getUniqueId()));
     }
 
     private void removeStun() {
@@ -127,8 +126,8 @@ public class Stun {
             timerTask.cancel();
             duration = 0;
             if (stuns.get(target).isEmpty()) {
-                stuned.put(target, false);
-                stunlocation.remove(target);
+                stuned.put(targetUUID, false);
+                stunlocation.remove(targetUUID);
             }
         }
     }
@@ -143,12 +142,12 @@ public class Stun {
 
     public static void removeAll(Entity target) {
         if (Boolean.TRUE.equals(stuned.get(target))) {
+            stuned.put(target.getUniqueId(), false);
             for (Stun t : stuns.get(target)) {
                 t.removeStun();
             }
             stuns.get(target).clear();
-            stuned.put(target, false);
-            stunlocation.remove(target);
+            stunlocation.remove(target.getUniqueId());
         }
     }
 
@@ -172,18 +171,23 @@ public class Stun {
         @EventHandler(priority = EventPriority.MONITOR)
         public void onTeleport(EntityTeleportEvent e){
             if(isStuned(e.getEntity())){
-                stunlocation.put(e.getEntity(),e.getTo());
+                stunlocation.put(e.getEntity().getUniqueId(),e.getTo());
             }
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onPlayerTeleport(PlayerTeleportEvent e){
             if(isStuned(e.getPlayer())){
-                stunlocation.put(e.getPlayer(),e.getTo());
+                stunlocation.put(e.getPlayer().getUniqueId(),e.getTo());
             }
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDeath(EntityDeathEvent e){
-            removeAll(e.getEntity());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    removeAll(e.getEntity());
+                }
+            }.runTaskLater(that, 2);
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onQuit(PlayerQuitEvent e){

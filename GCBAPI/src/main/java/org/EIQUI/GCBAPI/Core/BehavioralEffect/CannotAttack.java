@@ -2,21 +2,17 @@ package org.EIQUI.GCBAPI.Core.BehavioralEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.potion.PotionEffect;
-import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,7 +20,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class CannotAttack {
     private static final Map<Entity, CannotAttack> cannotattack = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> cannotattacked = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> cannotattacked = new HashMap<>();
 
     private LivingEntity target;
     private int duration;

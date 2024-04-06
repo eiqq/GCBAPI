@@ -2,8 +2,6 @@ package org.EIQUI.GCBAPI.Core.BeneficialEffect;
 
 import org.EIQUI.GCBAPI.Core.BehavioralEffect.GlowTo;
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
-import org.EIQUI.GCBAPI.Core.Shield;
-import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
@@ -12,7 +10,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
@@ -26,7 +23,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Stealth {
     private static final Map<Entity, Set<Stealth>> stealths = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> stealthed = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> stealthed = new HashMap<>();
 
     private Entity caster;
     private Entity target;
@@ -50,7 +47,9 @@ public class Stealth {
         if(Boolean.TRUE.equals(stealthed.get(target))){
             for(Stealth t :stealths.get(target)){
                 if(t.id.equals(id)){
-                    t.removeStealth();
+                    t.duration = duration;
+                    t.caster = caster;
+                    return;
                 }
             }
         }
@@ -150,14 +149,13 @@ public class Stealth {
         if(p == null || e == null || !e.isValid()){
             return false;
         }
-        if(!isStealth(e)){
-            return true;
-        }
         if (p.getGameMode().equals(GameMode.SPECTATOR)) {
             return true;
         }
-        if(GlowTo.isGlowTo(e,p)
-                || e.isGlowing()
+        if(!isStealth(e)){
+            return true;
+        }
+        if(GlowTo.isGlowTo(e,p) || e.isGlowing()
                 || (e instanceof LivingEntity && ((LivingEntity)e).hasPotionEffect(PotionEffectType.GLOWING)) ){
             return true;
         }

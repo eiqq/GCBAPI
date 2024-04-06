@@ -3,14 +3,14 @@ package org.EIQUI.GCBAPI.Core.stat;
 import org.EIQUI.GCBAPI.Core.stat.structure.NonBasedAttribute;
 import org.bukkit.entity.LivingEntity;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class Armor implements NonBasedAttribute {
     public static final String NAME = "ARMOR";
-    private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();
+    private static final Map<LivingEntity,Double> TOTAL = new ConcurrentHashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_FIXED = new ConcurrentHashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new ConcurrentHashMap<>();;
 
     @Override
     public double getTotal(LivingEntity e) {

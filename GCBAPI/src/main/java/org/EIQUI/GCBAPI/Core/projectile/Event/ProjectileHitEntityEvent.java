@@ -2,8 +2,6 @@ package org.EIQUI.GCBAPI.Core.projectile.Event;
 
 import org.EIQUI.GCBAPI.Core.projectile.Projectile;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
-import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.HandlerList;

@@ -10,24 +10,20 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.EIQUI.GCBAPI.main.that;
 
 public class Untargetable {
     private static final Map<Entity, Set<Untargetable>> untargetables = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> untargetableed = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> untargetableed = new HashMap<>();
 
     private Entity caster;
     private Entity target;

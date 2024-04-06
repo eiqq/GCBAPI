@@ -20,7 +20,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Slow {
     private static final Map<LivingEntity, Set<Slow>> slows = new ConcurrentHashMap<>();
-    private static final Map<LivingEntity, Boolean> slowed = new ConcurrentHashMap<>();
+    private static final Map<LivingEntity, Boolean> slowed = new HashMap<>();
 
     private Entity caster;
     private LivingEntity target;
@@ -181,7 +181,12 @@ public class Slow {
         public SlowHandler(){}
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDeath(EntityDeathEvent e){
-            removeAll(e.getEntity());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    removeAll(e.getEntity());
+                }
+            }.runTaskLater(that, 2l);
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onQuit(PlayerQuitEvent e){

@@ -1,87 +1,84 @@
 package org.EIQUI.GCBAPI.blockbreaker;
 
+import org.EIQUI.GCBAPI.Core.HitboxAPI;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.block.CommandBlock;
-import org.bukkit.block.TileState;
-import org.bukkit.block.data.BlockData;
+import org.bukkit.util.Vector;
 
-import java.util.HashMap;
-import java.util.logging.Level;
-import static org.EIQUI.GCBAPI.main.that;
+import java.util.Collection;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class BlockBreaker {
-
-    private static HashMap<Location,BlockSaver> saved =new HashMap<>();
+    private static ConcurrentHashMap<Location,BlockSaver> saved =new ConcurrentHashMap<>();
 
     public static void Break(Location l, double radius){
-        int minX = (int) (l.getBlockX() -radius);
-        int minY = (int) (l.getBlockY() -radius);
-        int minZ = (int) (l.getBlockZ() -radius);
-        World w = l.getWorld();
-        double rr = Math.pow(radius,2) + 0.000001;
-        for(int x = 0; x <= radius*2; x++){
-            for(int y = 0 ; y <= radius*2 ; y++){
-                for(int z = 0; z <= radius*2 ; z++){
-                    Block b = w.getBlockAt(minX+x,minY+y,minZ+z);
-                    if (!(b.getBlockData().getMaterial().equals(Material.BEDROCK)
-                            || b.getBlockData().getMaterial().equals(Material.AIR)
-                            || b.getState() instanceof CommandBlock)){
-                        Location tl = b.getLocation();
-                        if(tl.distanceSquared(l) <= rr){
-                            saved.put(tl,new BlockSaver(b.getType(),b.getBlockData()));
-                            if(!w.getChunkAt(b).isForceLoaded()){
-                                w.getChunkAt(b).setForceLoaded(true);
-                                b.setType(Material.AIR,false);
-                                w.getChunkAt(b).setForceLoaded(false);
-                            }else{
-                                b.setType(Material.AIR,false);
-                            }
-                        }
-                    }
+        double rr = (radius * radius) - Vector.getEpsilon();
+        Collection<Block> blocks = HitboxAPI.getBlocksIn(l, radius, radius, radius);
+        blocks.removeIf(block ->
+        {
+            Material type = block.getState().getType();
+            return type.isAir() ||
+                    type.equals(Material.COMMAND_BLOCK) ||
+                    type.equals(Material.REPEATING_COMMAND_BLOCK) ||
+                    type.equals(Material.CHAIN_COMMAND_BLOCK) ||
+                    type.equals(Material.BEDROCK) ||
+                    type.equals(Material.BARRIER) ||
+                    type.equals(Material.STRUCTURE_VOID) ||
+                    block.getLocation().distanceSquared(l) > rr;
+        });
+        for (Block b : blocks) {
+            saved.put(b.getLocation(), new BlockSaver(b.getType(), b.getBlockData()));
+            if (!b.getChunk().isLoaded()) {
+                b.getChunk().load();
+            }
+            b.setType(Material.AIR,false);
+        }
+    }
+
+    public static void Break(Location l, double radius,double per){
+        double rr = (radius * radius) - Vector.getEpsilon();
+        Collection<Block> blocks = HitboxAPI.getBlocksIn(l, radius, radius, radius);
+        blocks.removeIf(block ->
+        {
+            Material type = block.getState().getType();
+            return type.isAir() ||
+                    type.equals(Material.COMMAND_BLOCK) ||
+                    type.equals(Material.REPEATING_COMMAND_BLOCK) ||
+                    type.equals(Material.CHAIN_COMMAND_BLOCK) ||
+                    type.equals(Material.BEDROCK) ||
+                    type.equals(Material.BARRIER) ||
+                    type.equals(Material.STRUCTURE_VOID) ||
+                    block.getLocation().distanceSquared(l) > rr;
+        });
+        for (Block b : blocks) {
+            if(Math.random() < per){
+                saved.put(b.getLocation(), new BlockSaver(b.getType(), b.getBlockData()));
+                if (!b.getChunk().isLoaded()) {
+                    b.getChunk().load();
                 }
+                b.setType(Material.AIR,false);
             }
         }
     }
 
     public static void repairAt(Location l){
-        l.setX(l.getBlockX());
-        l.setX(l.getBlockY());
-        l.setX(l.getBlockZ());
         if(!saved.containsKey(l)){
             return;
         }
         BlockSaver saver = saved.get(l);
-        Material mat = saver.material;
-        BlockData data = saver.blockData;
-        if(!l.getWorld().getChunkAt(l).isForceLoaded()){
-            l.getWorld().getChunkAt(l).setForceLoaded(true);
-            l.getWorld().setType(l,mat);
-            l.getWorld().setBlockData(l,data);
-            l.getWorld().getChunkAt(l).setForceLoaded(false);
-        }else{
-            l.getWorld().setType(l,mat);
-            l.getWorld().setBlockData(l,data);
-        }
+        l.getChunk().load();
+        l.getBlock().setType(saver.material,false);
+        l.getBlock().setBlockData(saver.blockData,false);
         saved.remove(l);
     }
 
     public static void repairAll(){
         for(Location l:saved.keySet()){
             BlockSaver saver = saved.get(l);
-            Material mat = saver.material;
-            BlockData data = saver.blockData;
-            if(!l.getWorld().getChunkAt(l).isForceLoaded()){
-                l.getWorld().getChunkAt(l).setForceLoaded(true);
-                l.getWorld().setType(l,mat);
-                l.getWorld().setBlockData(l,data);
-                l.getWorld().getChunkAt(l).setForceLoaded(false);
-            }else{
-                l.getWorld().setType(l,mat);
-                l.getWorld().setBlockData(l,data);
-            }
+            l.getChunk().load();
+            l.getBlock().setType(saver.material,false);
+            l.getBlock().setBlockData(saver.blockData,false);
         }
         saved.clear();
     }

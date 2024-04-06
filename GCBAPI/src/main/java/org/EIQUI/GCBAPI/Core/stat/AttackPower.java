@@ -9,9 +9,9 @@ import java.util.Map;
 
 public class AttackPower implements NonBasedAttribute {
     public static final String NAME = "AP";
-    private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();
+    private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();;
 
     @Override
     public double getTotal(LivingEntity e) {

@@ -10,19 +10,35 @@ import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import javax.annotation.Nullable;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 import static org.EIQUI.GCBAPI.main.that;
 
 public class Skill {
-    private static final Map<UUID, Map<Integer, String>> SKILL_MAP = new HashMap<>();
-    private static final Map<UUID, Map<String, Integer>> COOLDOWN_MAP = new HashMap<>();
-    private static final Map<UUID, Set<String>> IS_COOLDOWN = new HashMap<>();
+    private static final Map<UUID, Map<Integer, String>> SKILL_MAP = new ConcurrentHashMap<>();
+    private static final Map<UUID, Map<String, Integer>> COOLDOWN_MAP = new ConcurrentHashMap<>();
+    private static final Map<UUID, Set<String>> IS_COOLDOWN = new ConcurrentHashMap<>();
+    private static final Map<UUID, Set<String>> IS_CASTING = new ConcurrentHashMap<>();
 
+    public static boolean isCasting(@Nullable Entity e,@Nullable String skillname){
+        if(e == null || skillname == null){
+            return false;
+        }
+        IS_CASTING.computeIfAbsent(e.getUniqueId(), k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
+        return IS_CASTING.get(e.getUniqueId()).contains(skillname.toLowerCase());
+    }
+    public static void setCasting(@Nullable Entity e, @Nullable String skillname, boolean b){
+        if(e == null || skillname == null){
+            return;
+        }
+        IS_CASTING.computeIfAbsent(e.getUniqueId(), k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
+        if(Boolean.TRUE.equals(b)){
+            IS_CASTING.get(e.getUniqueId()).add(skillname.toLowerCase());
+        }else{
+            IS_CASTING.get(e.getUniqueId()).remove(skillname.toLowerCase());
+        }
+    }
 
     public static void setSkill(Entity e, int slot,@Nullable String skillname) {
         if(skillname == null){
@@ -62,11 +78,13 @@ public class Skill {
         }
         if(cdInSec < 0){
             cdInSec = 0;
+
         }
-        UUID entityId = e.getUniqueId();
+        UUID id = e.getUniqueId();
         skillname = skillname.toLowerCase();
         int cdInTick = (int) Math.round(cdInSec * 20.0d);
-        getOrCreateCooldownMap(entityId).put(skillname, cdInTick);
+        COOLDOWN_MAP.computeIfAbsent(id, k -> new HashMap<>());
+        COOLDOWN_MAP.get(id).put(skillname, cdInTick);
         startTickCooldown(e, skillname);
     }
 
@@ -95,6 +113,10 @@ public class Skill {
             return;
         }
         UUID entityId = e.getUniqueId();
+        if (getOrCreateCooldownMap(entityId).getOrDefault(skillname, 0) <= 0) {
+            getOrCreateIsCooldownSet(entityId).remove(skillname);
+            return;
+        }
         getOrCreateIsCooldownSet(entityId).add(skillname);
         Map<String, Integer> cooldownMap = getOrCreateCooldownMap(entityId);
         new BukkitRunnable() {
@@ -129,6 +151,10 @@ public class Skill {
             IS_COOLDOWN.get(id).clear();
             IS_COOLDOWN.remove(id);
         }
+        if( IS_CASTING.containsKey(id)){
+            IS_CASTING.get(id).clear();
+            IS_CASTING.remove(id);
+        }
     }
     public static void clear(){
         for(Map<String, Integer> a : COOLDOWN_MAP.values()){
@@ -143,17 +169,18 @@ public class Skill {
         SKILL_MAP.clear();
         COOLDOWN_MAP.clear();
         IS_COOLDOWN.clear();
+        IS_CASTING.clear();
     }
 
     private static Map<Integer, String> getOrCreateSkillMap(UUID entityId) {
-        return SKILL_MAP.computeIfAbsent(entityId, k -> new HashMap<>());
+        return SKILL_MAP.computeIfAbsent(entityId, k -> new ConcurrentHashMap<>());
     }
 
     private static Map<String, Integer> getOrCreateCooldownMap(UUID entityId) {
-        return COOLDOWN_MAP.computeIfAbsent(entityId, k -> new HashMap<>());
+        return COOLDOWN_MAP.computeIfAbsent(entityId, k -> new ConcurrentHashMap<>());
     }
     private static Set<String> getOrCreateIsCooldownSet(UUID entityId) {
-        return IS_COOLDOWN.computeIfAbsent(entityId, k -> new HashSet<>());
+        return IS_COOLDOWN.computeIfAbsent(entityId, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
     }
 
     public static class SkillHandler implements Listener {

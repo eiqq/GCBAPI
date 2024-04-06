@@ -6,23 +6,19 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.EIQUI.GCBAPI.main.that;
 
 public class Invincible {
     private static final Map<Entity, Set<Invincible>> invincibles = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> invincibleed = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> invincibleed = new HashMap<>();
 
     private Entity caster;
     private Entity target;
@@ -105,11 +101,11 @@ public class Invincible {
 
     public static void removeAll(Entity target) {
         if (invincibles.containsKey(target)) {
+            invincibleed.put(target, false);
             for (Invincible t : invincibles.get(target)) {
                 t.removeInvincible();
             }
             invincibles.get(target).clear();
-            invincibleed.put(target, false);
         }
     }
 

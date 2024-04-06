@@ -2,28 +2,23 @@ package org.EIQUI.GCBAPI.Core.BeneficialEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.LivingEntity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
-import java.util.Collections;
-import java.util.Map;
-import java.util.Set;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.EIQUI.GCBAPI.main.that;
 
 public class Unstopable {
     private static final Map<Entity, Set<Unstopable>> unstopables = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> unstopableed = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> unstopableed = new HashMap<>();
 
     private Entity caster;
     private Entity target;

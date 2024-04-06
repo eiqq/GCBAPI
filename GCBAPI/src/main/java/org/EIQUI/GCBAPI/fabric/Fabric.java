@@ -1,9 +1,9 @@
 package org.EIQUI.GCBAPI.fabric;
 
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import org.bukkit.entity.Player;
-import io.netty.buffer.ByteBuf;
 
 import java.nio.charset.StandardCharsets;
 

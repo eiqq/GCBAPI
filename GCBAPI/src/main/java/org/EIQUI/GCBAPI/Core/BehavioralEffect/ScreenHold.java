@@ -1,9 +1,7 @@
 package org.EIQUI.GCBAPI.Core.BehavioralEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
-import org.EIQUI.GCBAPI.Core.UnitVector;
-import org.EIQUI.GCBAPI.PacketAPI;
-import org.bukkit.Location;
+import org.EIQUI.GCBAPI.Core.PacketAPI;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
@@ -12,13 +10,13 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTeleportEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -26,7 +24,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class ScreenHold {
     private static final Map<Entity, ScreenHold> screenhold = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> screenholded = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> screenholded = new HashMap<>();
 
     private Entity target;
     private int duration;

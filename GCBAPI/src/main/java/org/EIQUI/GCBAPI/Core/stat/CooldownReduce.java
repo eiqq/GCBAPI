@@ -8,9 +8,9 @@ import java.util.Map;
 
 public class CooldownReduce implements NonBasedAttribute {
     public static final String NAME = "CDR";
-    private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();
-    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();
+    private static final Map<LivingEntity,Double> TOTAL = new HashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_FIXED = new HashMap<>();;
+    private static final Map<LivingEntity,Double> BONUS_MULTIPLIER = new HashMap<>();;
 
     @Override
     public double getTotal(LivingEntity e) {

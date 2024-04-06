@@ -1,25 +1,20 @@
 package org.EIQUI.GCBAPI.Core.BehavioralEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
-import org.EIQUI.GCBAPI.Core.UnitVector;
-import org.bukkit.GameMode;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.attribute.AttributeModifier;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,7 +22,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class SelfMovementSpeedControl {
     private static final Map<LivingEntity, SelfMovementSpeedControl> selfmovementspeedcontrol = new ConcurrentHashMap<>();
-    private static final Map<LivingEntity, Boolean> selfmovementspeedcontroled = new ConcurrentHashMap<>();
+    private static final Map<LivingEntity, Boolean> selfmovementspeedcontroled = new HashMap<>();
 
     private LivingEntity target;
     private int duration;

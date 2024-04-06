@@ -10,13 +10,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -24,7 +24,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Floating {
     private static final Map<Entity, Floating> floating = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> floatinged = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> floatinged = new HashMap<>();
 
     private Entity target;
     private int duration;

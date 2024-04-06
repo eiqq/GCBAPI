@@ -1,5 +1,6 @@
 package org.EIQUI.GCBAPI.events;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -15,6 +16,17 @@ public class PlayerKeyInput extends Event implements Cancellable {
     private boolean isPressed;
     private boolean cancelled = false;
 
+    public static void parsePacketAndCall(Player p, String[] Data){
+        int currenthand = p.getInventory().getHeldItemSlot();
+        int newhand = Integer.parseInt(Data[0]);
+        PlayerKeyInput event = new PlayerKeyInput(p, currenthand, newhand, Boolean.parseBoolean(Data[1]));
+        Bukkit.getPluginManager().callEvent(event);
+        if (event.isCancelled()) {
+            if (newhand < 10) {
+                p.getInventory().setHeldItemSlot(currenthand);
+            }
+        }
+    }
     public PlayerKeyInput(Player p,int pre, int s,boolean b) {
         this.player = p;
         this.key = s;

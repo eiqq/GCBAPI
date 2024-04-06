@@ -1,31 +1,30 @@
 package org.EIQUI.GCBAPI.particle;
-import com.github.fierioziy.particlenativeapi.api.ParticleNativeAPI;
+
 import com.github.fierioziy.particlenativeapi.api.particle.ParticleList_1_13;
 import com.github.fierioziy.particlenativeapi.api.particle.type.ParticleType;
+import org.EIQUI.GCBAPI.Util;
 import org.EIQUI.GCBAPI.fabric.Fabric;
 import org.EIQUI.GCBAPI.fabric.FabricC2S;
 import org.bukkit.*;
+import org.bukkit.Particle.DustOptions;
+import org.bukkit.Particle.DustTransition;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
-import org.bukkit.Particle.DustOptions;
 
-import static ch.njol.util.VectorMath.getYaw;
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.EIQUI.GCBAPI.Util.getVector;
 import static org.EIQUI.GCBAPI.main.that;
 import static org.bukkit.util.NumberConversions.round;
-import org.bukkit.Particle.DustTransition;
-import java.lang.Math;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.function.Predicate;
 
 public final class ParticleAPI{
     public static ParticleList_1_13 particle_1_13;
 
-    public static final double NOMODREDUCED = 0.5;
+    public static final double NOMODREDUCED = 0.25d;
 
 //--------------------------------------------------------------------------------------------------------
     public static void Particle(String particle,final Location l
@@ -38,19 +37,23 @@ public final class ParticleAPI{
                 l,0,0,0,0,0,null,force);
     }
     public static void RedstoneParticleDot(final Location l,int r,int g,int b,float size,boolean force){
-        l.getWorld().spawnParticle(Particle.valueOf("REDSTONE"),
-                l,0,0,0,0,0,new DustOptions(Color.fromRGB(r,g,b), size),force);
+        RedstoneParticleDot(l,r,g,b,r,g,b,size,force);
     }
+    public static void RedstoneParticleDot(final Location l,int r,int g,int b,int r2,int g2,int b2,float size,boolean force){
+        l.getWorld().spawnParticle(Particle.DUST_COLOR_TRANSITION,
+                l,0,0,0,0,0,new DustTransition(Color.fromRGB(r,g,b),Color.fromRGB(r2,g2,b2), size),force);
+    }
+
+
     public static void RedstoneParticle(final Location l,double x,double y,double z, int amount
             ,int r,int g,int b,float size,boolean force){
-        l.getWorld().spawnParticle(Particle.valueOf("REDSTONE"),l,amount,x,y,z,0
+        l.getWorld().spawnParticle(Particle.REDSTONE,l,amount,x,y,z,0
                 ,new DustOptions(Color.fromRGB(r,g,b),size),force);
     }
 
     public static void RedstoneParticle_ToPlayers(Player p,final Location l,double x,double y,double z, int amount
             ,int r,int g,int b,float size){
-        p.spawnParticle(Particle.valueOf("REDSTONE"),l,amount,x,y,z,0,
-                new DustOptions(Color.fromRGB(r,g,b), size));
+        p.spawnParticle(Particle.REDSTONE,l,amount,x,y,z,0, new DustOptions(Color.fromRGB(r,g,b), size));
     }
 //--------------------------------------------------------------------------------------------------------------------------------
     public static void RSline(Player p,Location start, Location end,
@@ -82,7 +85,7 @@ public final class ParticleAPI{
                 RSline(p, start, end, r, g, b, r2, g2, b2, size, density, force);
             }
         }
-        col.removeIf(ent -> (FabricC2S.hasMod(ent)));
+        col.removeIf(FabricC2S::hasMod);
         if (col.size() == 0){
             return;
         }
@@ -552,7 +555,7 @@ public final class ParticleAPI{
         s = s.clone();
         e = e.clone();
         Vector v = (e.clone().subtract(s)).toVector().normalize();
-        double yaw = getYaw(v);
+        double yaw = Util.getYaw(v);
         Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2);
         v2.multiply(radius);
         double distance = e.distance(s);
@@ -582,7 +585,7 @@ public final class ParticleAPI{
         s = s.clone();
         e = e.clone();
         Vector v = (e.clone().subtract(s)).toVector().normalize();
-        double yaw = getYaw(v);
+        double yaw = Util.getYaw(v);
         Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2);
         v2.multiply(radius);
         double distance = e.distance(s);
@@ -632,7 +635,7 @@ public final class ParticleAPI{
         Location st = s.clone();
         Location et = e.clone();
         Vector v = (et.clone().subtract(st)).toVector().normalize();
-        double yaw = getYaw(v);
+        double yaw = Util.getYaw(v);
         Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2);
         v2.multiply(radius);
         double distance = et.distance(st);
@@ -665,8 +668,8 @@ public final class ParticleAPI{
         Location st = s.clone();
         Location et = e.clone();
         Vector v = (et.clone().subtract(st)).toVector().normalize();
-        double yaw = getYaw(v);
-        Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2);
+        double yaw = Util.getYaw(v);
+        Vector v2 = v.clone().rotateAroundAxis(getVector(yaw+90,0),Math.PI/2.0f);
         v2.multiply(radius);
         double distance = et.distance(st);
         double rotate = (360.0f/points)*(Math.PI/180.0f);

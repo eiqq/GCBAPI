@@ -2,24 +2,20 @@ package org.EIQUI.GCBAPI.Core.BehavioralEffect;
 
 import org.EIQUI.GCBAPI.Core.CC.Timestop;
 import org.EIQUI.GCBAPI.Core.UnitVector;
-import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
-import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.entity.EntityTeleportEvent;
-import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
-import org.bukkit.util.Vector;
 
 import javax.annotation.Nullable;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,7 +23,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Hold {
     private static final Map<Entity, Hold> hold = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> holded = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> holded = new HashMap<>();
 
     private Entity target;
     private int duration;
@@ -50,22 +46,26 @@ public class Hold {
         timerTask = new BukkitRunnable() {
             @Override
             public void run() {
-                tick();
+                if(!tick()){
+                    cancel();
+                }
             }
         }.runTaskTimer(that, 0L, 1);
     }
-    private void tick() {
+    private boolean tick() {
         if (duration == 0 || !target.isValid() || target.isDead()) {
             remove(target);
+            return false;
         }
         if(!Timestop.isTimestopped(target)){
             if(UnitVector.hasVector(target)){
                 loc = target.getLocation();
-            }else{
+            }else if(!target.isInsideVehicle()){
                 target.teleport(loc);
             }
             duration--;
         }
+        return true;
     }
     public static boolean isHold(@Nullable Entity target) {
         if (target == null){

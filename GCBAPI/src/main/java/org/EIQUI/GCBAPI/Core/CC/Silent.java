@@ -17,7 +17,7 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Silent {
     private static final Map<Entity, Set<Silent>> silents = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> silented = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> silented = new HashMap<>();
 
     private Entity caster;
     private Entity target;
@@ -49,9 +49,7 @@ public class Silent {
             }
         }
 
-
         silents.computeIfAbsent(target, k -> Collections.newSetFromMap(new ConcurrentHashMap<>()));
-
 
         silents.get(target).add(this);
         silented.put(target, true);
@@ -128,7 +126,12 @@ public class Silent {
         public SilentHandler(){}
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDeath(EntityDeathEvent e){
-            removeAll(e.getEntity());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    removeAll(e.getEntity());
+                }
+            }.runTaskLater(that, 2l);
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onQuit(PlayerQuitEvent e){

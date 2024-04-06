@@ -1,7 +1,7 @@
 package org.EIQUI.GCBAPI.Core.CC;
 
+import org.EIQUI.GCBAPI.Core.UnitCollision;
 import org.EIQUI.GCBAPI.Core.UnitVector;
-import org.EIQUI.GCBAPI.UnitCollision;
 import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
@@ -22,8 +22,8 @@ import static org.EIQUI.GCBAPI.main.that;
 
 public class Suspend {
     private static final Map<Entity, Set<Suspend>> suspends = new ConcurrentHashMap<>();
-    private static final Map<Entity, Boolean> suspended = new ConcurrentHashMap<>();
-    private static final Map<Entity, Location> suspendlocation = new ConcurrentHashMap<>();
+    private static final Map<Entity, Boolean> suspended = new HashMap<>();
+    private static final Map<Entity, Location> suspendlocation = new HashMap<>();
 
 
     private Entity caster;
@@ -63,6 +63,9 @@ public class Suspend {
         }
         suspended.put(target, true);
         suspends.get(target).add(this);
+        startTick();
+    }
+    private void startTick() {
         timerTask = new BukkitRunnable() {
             @Override
             public void run() {
@@ -80,19 +83,22 @@ public class Suspend {
         }
     }
     private void suspendEffect() {
+        if(!target.isInsideVehicle()) {
+            target.teleport(suspendlocation.get(target));
+        }
         if (Boolean.TRUE.equals(suspended.get(target))) {
             return;
         }
-        BukkitTask efftask = new BukkitRunnable() {
+        new BukkitRunnable() {
             @Override
             public void run() {
-                if (Boolean.FALSE.equals(suspended.get(target))) {
+                if (!Boolean.TRUE.equals(suspended.get(target))) {
                     this.cancel();
                     return;
                 }
                 if(UnitVector.hasVector(target)){
                     suspendlocation.put(target,target.getLocation());
-                }else{
+                }else if(!target.isInsideVehicle()){
                     target.teleport(suspendlocation.get(target));
                 }
             }
@@ -168,7 +174,12 @@ public class Suspend {
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onDeath(EntityDeathEvent e){
-            removeAll(e.getEntity());
+            new BukkitRunnable() {
+                @Override
+                public void run() {
+                    removeAll(e.getEntity());
+                }
+            }.runTaskLater(that, 2l);
         }
         @EventHandler(priority = EventPriority.MONITOR)
         public void onQuit(PlayerQuitEvent e){
